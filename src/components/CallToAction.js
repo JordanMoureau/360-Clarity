@@ -1,10 +1,26 @@
 const CallToAction = ({ headline, subheadline, buttonText, buttonLink }) => {
   // Function to handle the conversion tracking
   const handleButtonClick = () => {
+    // LinkedIn Tracking
     if (window.lintrk) {
       window.lintrk("track", { conversion_id: 18902012 });
     } else {
       console.error("LinkedIn tracking is not available");
+    }
+
+    // Google Conversion Tracking
+    if (typeof gtag !== "undefined") {
+      gtag("event", "conversion", {
+        send_to: "AW-16851850239/q1fuCKa3tZoaEP-ny-M-",
+        value: 1.0,
+        currency: "USD",
+        event_callback: () => {
+          window.location.href = buttonLink; // Redirect after tracking
+        },
+      });
+    } else {
+      console.error("Google Analytics tracking is not available");
+      window.location.href = buttonLink; // Redirect immediately if gtag is missing
     }
   };
 

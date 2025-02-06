@@ -15,6 +15,25 @@
 
       gtag("config", "AW-16851850239");
     </script>
+    <!-- Event snippet for Schedule Button Click conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-16851850239/q1fuCKa3tZoaEP-ny-M-",
+          value: 1.0,
+          currency: "USD",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
