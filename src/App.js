@@ -16,7 +16,7 @@ function App() {
         headline="Clarity for Your Workplace Starts Here"
         subheadline="Book your free Workplace Culture Audit and take the first step toward stronger retention, engagement, and success."
         buttonText="Schedule Your Free Audit"
-        buttonLink="https://calendly.com/360-clarity/30-min-online"
+        buttonLink="https://calendly.com/360-clarity/linkedin-intro"
       />
       <div className="info-sections-container px-6 py-12 bg-gray-50 flex justify-center">
         <div className="max-w-screen-md w-full">
@@ -76,7 +76,7 @@ function App() {
         headline="Take the First Step Toward a Better Workplace"
         subheadline="Book your free audit and unlock actionable steps to improve retention and engagement."
         buttonText="Book Now"
-        buttonLink="https://calendly.com/360-clarity/30-min-online"
+        buttonLink="https://calendly.com/360-clarity/linkedin-intro"
       />
     </div>
   );
