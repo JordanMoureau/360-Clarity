@@ -1,6 +1,8 @@
 const CallToAction = ({ headline, subheadline, buttonText, buttonLink }) => {
-  // Function to handle the conversion tracking
-  const handleButtonClick = () => {
+  // Function to handle conversion tracking
+  const handleButtonClick = (e) => {
+    e.preventDefault(); // Prevent default navigation
+
     // LinkedIn Tracking
     if (window.lintrk) {
       window.lintrk("track", { conversion_id: 18902012 });
@@ -8,19 +10,23 @@ const CallToAction = ({ headline, subheadline, buttonText, buttonLink }) => {
       console.error("LinkedIn tracking is not available");
     }
 
-    // Google Conversion Tracking
-    if (typeof gtag !== "undefined") {
-      gtag("event", "conversion", {
+    // Google Ads Conversion Tracking
+    if (typeof window.gtag_report_conversion === "function") {
+      window.gtag_report_conversion(buttonLink);
+    } else if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
         send_to: "AW-16851850239/q1fuCKa3tZoaEP-ny-M-",
         value: 1.0,
         currency: "USD",
         event_callback: () => {
-          window.location.href = buttonLink; // Redirect after tracking
+          setTimeout(() => {
+            window.location.href = buttonLink; // Delayed redirect
+          }, 500); // Allows time for tracking
         },
       });
     } else {
       console.error("Google Analytics tracking is not available");
-      window.location.href = buttonLink; // Redirect immediately if gtag is missing
+      window.location.href = buttonLink; // Fallback redirect
     }
   };
 
@@ -31,7 +37,7 @@ const CallToAction = ({ headline, subheadline, buttonText, buttonLink }) => {
       <a
         href={buttonLink}
         className="mt-8 inline-block bg-white text-blue-500 px-6 py-3 rounded"
-        onClick={handleButtonClick} // Add the onClick handler here
+        onClick={handleButtonClick} // Add click tracking
       >
         {buttonText}
       </a>
