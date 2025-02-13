@@ -51,10 +51,10 @@ function HeroSection({ headline, subheadline, buttonText, buttonLink }) {
       {/* Overlay Content */}
       <div className="relative z-10 text-white px-10 py-20 rounded-lg max-w-4xl">
         <h1 className="text-4xl md:text-6xl font-bold">{headline}</h1>
-        <p className="text-lg md:text-xl mt-4">{subheadline}</p>
+        <p className="text-xl md:text-1xl mt-4">{subheadline}</p>
         <a
           href={buttonLink}
-          className="mt-8 inline-block bg-blue-500 text-white px-6 py-3 rounded shadow-lg hover:bg-blue-600 transition"
+          className="mt-8 font-bold inline-block bg-blue-500 text-white px-6 py-3 rounded shadow-lg hover:bg-blue-600 transition"
           onClick={handleButtonClick} // 🔥 Now tracking clicks for LinkedIn & Google Ads
         >
           {buttonText}
