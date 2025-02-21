@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import herovideo from "../assets/ScotchmanPeak.mp4";
 import logo from "../assets/logo.png";
 
-function HeroSection({ headline, subheadline, buttonText, buttonLink }) {
-  // Function to handle conversion tracking
+function HeroSection({ headline, subheadline, buttonText }) {
+  const navigate = useNavigate(); // React Router navigation
+
+  // Function to handle conversion tracking & navigation
   const handleButtonClick = (e) => {
     e.preventDefault(); // Prevents default navigation
 
@@ -20,14 +23,12 @@ function HeroSection({ headline, subheadline, buttonText, buttonLink }) {
         value: 1.0,
         currency: "USD",
         event_callback: function () {
-          setTimeout(() => {
-            window.location.href = buttonLink; // Delayed redirect for tracking
-          }, 500);
+          navigate("/quiz"); // ✅ Navigate to quiz page
         },
       });
     } else {
       console.error("Google Analytics tracking is not available");
-      window.location.href = buttonLink; // Fallback redirect
+      navigate("/quiz"); // ✅ Fallback navigation to quiz
     }
   };
 
@@ -52,13 +53,12 @@ function HeroSection({ headline, subheadline, buttonText, buttonLink }) {
       <div className="relative z-10 text-white px-10 py-20 rounded-lg max-w-4xl">
         <h1 className="text-4xl md:text-6xl font-bold">{headline}</h1>
         <p className="text-xl md:text-1xl mt-4">{subheadline}</p>
-        <a
-          href={buttonLink}
+        <button
           className="mt-8 font-bold inline-block bg-blue-500 text-white px-6 py-3 rounded shadow-lg hover:bg-blue-600 transition"
-          onClick={handleButtonClick} // 🔥 Now tracking clicks for LinkedIn & Google Ads
+          onClick={handleButtonClick} // ✅ Navigates to /quiz properly
         >
           {buttonText}
-        </a>
+        </button>
       </div>
 
       {/* Gradient Overlay */}
